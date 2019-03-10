@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:5.0.3
+    restart: always
+    volumes:
+      - ./conf/redis.conf:/etc/redis.conf
+      - ./storage:/data
+      - ./log:/var/log/redis
+    ports:
+      - "30010:6379"
+    # 如果要指定conf文件
+    command:
+      # 开启服务端的命令
+      redis-server /etc/redis.conf
+      # 开启客户端的命令
+      # redis-cli
